@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% block title %}Posts{% endblock %}
+{% block content %}
+  <h1>Posts</h1>
+  <a href="{{ url_for('admin.post_new') }}">+ New Post</a>
+  <table>
+    <thead><tr><th>Title</th><th>Published</th><th></th></tr></thead>
+    <tbody>
+      {% for p in posts %}
+      <tr>
+        <td>{{ p.title }}</td>
+        <td>{{ "Yes" if p.is_published else "No" }}</td>
+        <td>
+          <a href="{{ url_for('admin.post_edit', post_id=p.id) }}">Edit</a>
+          <form method="POST" action="{{ url_for('admin.post_delete', post_id=p.id) }}" style="display:inline" onsubmit="return confirm('Delete this post?');">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="3">No posts yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

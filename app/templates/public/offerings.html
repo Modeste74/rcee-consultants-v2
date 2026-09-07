@@ -1,0 +1,13 @@
+{% extends "public/base.html" %}
+{% block title %}Offerings{% endblock %}
+{% block content %}
+  <h1>Programs & Services</h1>
+  <ul>
+    {% for o in offerings %}
+      <li>
+        <a href="{{ url_for('public.offering_detail', slug=o.slug) }}">{{ o.name }}</a>
+        <small>({{ o.type.value }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

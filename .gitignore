@@ -1,0 +1,31 @@
+# Virtual environments - never commit these (this alone bloated v1 by 20MB)
+venv/
+env/
+*_vir_env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+
+# Local database
+*.db
+*.sqlite3
+
+# Local upload fallback (production uses cloud storage, not this)
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# Editor/OS cruft
+.vscode/
+.idea/
+.DS_Store
+
+# Flask-Migrate is versioned, but not its __pycache__
+migrations/__pycache__/

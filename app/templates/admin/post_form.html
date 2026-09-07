@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ "Edit" if post else "New" }} Post{% endblock %}
+{% block content %}
+  <h1>{{ "Edit" if post else "New" }} Post</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>{{ form.title.label }} {{ form.title() }}</p>
+    <p>{{ form.content.label }} {{ form.content() }}</p>
+    {% if post and post.image_url %}
+      <p><img src="{{ post.image_url }}" alt="" width="150"></p>
+    {% endif %}
+    <p>{{ form.image.label }} {{ form.image() }}</p>
+    <p>{{ form.is_published.label }} {{ form.is_published() }}</p>
+    {{ form.submit() }}
+  </form>
+{% endblock %}

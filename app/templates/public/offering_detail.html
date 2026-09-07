@@ -1,0 +1,7 @@
+{% extends "public/base.html" %}
+{% block title %}{{ offering.name }}{% endblock %}
+{% block content %}
+  <h1>{{ offering.name }}</h1>
+  <p>{{ offering.description }}</p>
+  <a href="{{ url_for('public.contact') }}?offering={{ offering.id }}">Enquire about this</a>
+{% endblock %}

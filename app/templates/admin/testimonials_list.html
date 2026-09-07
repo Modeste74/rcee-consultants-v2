@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block title %}Testimonials{% endblock %}
+{% block content %}
+  <h1>Testimonials</h1>
+  <a href="{{ url_for('admin.testimonial_new') }}">+ New Testimonial</a>
+  <table>
+    <thead><tr><th>Author</th><th>Offering</th><th>Published</th><th></th></tr></thead>
+    <tbody>
+      {% for t in testimonials %}
+      <tr>
+        <td>{{ t.author_name }}</td>
+        <td>{{ t.offering.name if t.offering else "-" }}</td>
+        <td>{{ "Yes" if t.is_published else "No" }}</td>
+        <td>
+          <a href="{{ url_for('admin.testimonial_edit', testimonial_id=t.id) }}">Edit</a>
+          <form method="POST" action="{{ url_for('admin.testimonial_delete', testimonial_id=t.id) }}" style="display:inline" onsubmit="return confirm('Delete this testimonial?');">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No testimonials yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

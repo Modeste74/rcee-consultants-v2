@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+  <h1>Admin Login</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.username.label }} {{ form.username() }}</p>
+    <p>{{ form.password.label }} {{ form.password() }}</p>
+    {{ form.submit() }}
+  </form>
+  <a href="{{ url_for('admin.forgot_password') }}">Forgot password?</a>
+{% endblock %}

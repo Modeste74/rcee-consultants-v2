@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block title %}Offerings{% endblock %}
+{% block content %}
+  <h1>Offerings</h1>
+  <a href="{{ url_for('admin.offering_new') }}">+ New Offering</a>
+  <table>
+    <thead><tr><th>Name</th><th>Type</th><th>Published</th><th></th></tr></thead>
+    <tbody>
+      {% for o in offerings %}
+      <tr>
+        <td>{{ o.name }}</td>
+        <td>{{ o.type.value }}</td>
+        <td>{{ "Yes" if o.is_published else "No" }}</td>
+        <td>
+          <a href="{{ url_for('admin.offering_edit', offering_id=o.id) }}">Edit</a>
+          <form method="POST" action="{{ url_for('admin.offering_delete', offering_id=o.id) }}" style="display:inline" onsubmit="return confirm('Delete this offering?');">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No offerings yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

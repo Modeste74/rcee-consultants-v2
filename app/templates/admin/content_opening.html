@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% block title %}Opening Statement{% endblock %}
+{% block content %}
+  <h1>Opening Statement</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.content.label }} {{ form.content() }}</p>
+    {{ form.submit() }}
+  </form>
+{% endblock %}

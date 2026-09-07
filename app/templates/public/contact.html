@@ -1,0 +1,18 @@
+{% extends "public/base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+  <h1>Contact Us</h1>
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>{{ form.name.label }} {{ form.name() }}</p>
+    <p>{{ form.email.label }} {{ form.email() }}</p>
+    <p>{{ form.phone.label }} {{ form.phone() }}</p>
+    <p>{{ form.offering_id.label }} {{ form.offering_id() }}</p>
+    <p>{{ form.message.label }} {{ form.message() }}</p>
+    <!-- honeypot field, hidden from real users -->
+    <div style="position:absolute; left:-9999px;" aria-hidden="true">
+      {{ form.website.label }} {{ form.website() }}
+    </div>
+    {{ form.submit() }}
+  </form>
+{% endblock %}

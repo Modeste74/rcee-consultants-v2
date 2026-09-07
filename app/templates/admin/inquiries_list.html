@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+{% block title %}Inquiries{% endblock %}
+{% block content %}
+  <h1>Inquiries</h1>
+  <table>
+    <thead><tr><th>Name</th><th>Email</th><th>Regarding</th><th>Message</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for i in inquiries %}
+      <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.offering.name if i.offering else "General" }}</td>
+        <td>{{ i.message }}</td>
+        <td>{{ i.status.value }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('admin.inquiry_update_status', inquiry_id=i.id) }}" style="display:inline">
+            <select name="status">
+              <option value="new" {% if i.status.value == "new" %}selected{% endif %}>New</option>
+              <option value="responded" {% if i.status.value == "responded" %}selected{% endif %}>Responded</option>
+              <option value="archived" {% if i.status.value == "archived" %}selected{% endif %}>Archived</option>
+            </select>
+            <button type="submit">Update</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">No inquiries yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

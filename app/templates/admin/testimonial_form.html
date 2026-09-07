@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ "Edit" if testimonial else "New" }} Testimonial{% endblock %}
+{% block content %}
+  <h1>{{ "Edit" if testimonial else "New" }} Testimonial</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.author_name.label }} {{ form.author_name() }}</p>
+    <p>{{ form.quote.label }} {{ form.quote() }}</p>
+    <p>{{ form.offering_id.label }} {{ form.offering_id() }}</p>
+    <p>{{ form.is_published.label }} {{ form.is_published() }}</p>
+    {{ form.submit() }}
+  </form>
+{% endblock %}
