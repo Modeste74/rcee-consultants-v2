@@ -4,6 +4,8 @@ This directly addresses the bloat problem from the original project, where
 multi-megabyte, unresized images were committed straight into the repo.
 Every image uploaded through the admin panel is normalized here first.
 """
+from __future__ import annotations
+
 import io
 import os
 import uuid
