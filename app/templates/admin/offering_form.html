@@ -1,17 +1,18 @@
 {% extends "admin/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}{{ "Edit" if offering else "New" }} Offering{% endblock %}
 {% block content %}
   <h1>{{ "Edit" if offering else "New" }} Offering</h1>
   <form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
-    <p>{{ form.name.label }} {{ form.name() }}</p>
-    <p>{{ form.type.label }} {{ form.type() }}</p>
-    <p>{{ form.description.label }} {{ form.description() }}</p>
+    {{ field(form.name) }}
+    {{ field(form.type) }}
+    {{ field(form.description) }}
     {% if offering and offering.image_url %}
       <p><img src="{{ offering.image_url }}" alt="" width="150"></p>
     {% endif %}
-    <p>{{ form.image.label }} {{ form.image() }}</p>
-    <p>{{ form.is_published.label }} {{ form.is_published() }}</p>
+    {{ field(form.image) }}
+    {{ field(form.is_published) }}
     {{ form.submit() }}
   </form>
 {% endblock %}

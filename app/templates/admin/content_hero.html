@@ -1,15 +1,16 @@
 {% extends "admin/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}Hero Section{% endblock %}
 {% block content %}
   <h1>Hero Section</h1>
   <form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
-    <p>{{ form.heading.label }} {{ form.heading() }}</p>
-    <p>{{ form.subheading.label }} {{ form.subheading() }}</p>
+    {{ field(form.heading) }}
+    {{ field(form.subheading) }}
     {% if hero and hero.image_url %}
       <p><img src="{{ hero.image_url }}" alt="" width="150"></p>
     {% endif %}
-    <p>{{ form.image.label }} {{ form.image() }}</p>
+    {{ field(form.image) }}
     {{ form.submit() }}
   </form>
 {% endblock %}

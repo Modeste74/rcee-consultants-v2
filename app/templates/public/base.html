@@ -4,16 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}RCEE Consultants{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="{{ url_for('public.home') }}">Home</a>
-      <a href="{{ url_for('public.about') }}">About</a>
-      <a href="{{ url_for('public.offerings') }}">Offerings</a>
-      <a href="{{ url_for('public.blog') }}">Blog</a>
-      <a href="{{ url_for('public.contact') }}">Contact</a>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="{{ url_for('public.home') }}">RCEE Consultants</a>
+      <nav class="site-nav">
+        <a href="{{ url_for('public.home') }}">Home</a>
+        <a href="{{ url_for('public.about') }}">About</a>
+        <a href="{{ url_for('public.offerings') }}">Offerings</a>
+        <a href="{{ url_for('public.blog') }}">Blog</a>
+        <a href="{{ url_for('public.contact') }}">Contact</a>
+      </nav>
+    </div>
   </header>
 
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -30,10 +37,16 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
-    {% if whatsapp_number %}
-      <a href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
-    {% endif %}
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; {{ 2026 }} RCEE Consultants</span>
+      <div style="display:flex; gap:1.5rem; align-items:center;">
+        {% if whatsapp_number %}
+          <a class="whatsapp-link" href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        {% endif %}
+        <a href="{{ url_for('public.privacy') }}">Privacy</a>
+      </div>
+    </div>
     <a href="{{ url_for('public.privacy') }}">Privacy</a>
   </footer>
 </body>

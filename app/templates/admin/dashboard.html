@@ -1,12 +1,12 @@
 {% extends "admin/base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-  <h1>Admin Dashboard</h1>
+  <h1>Dashboard</h1>
   <p>Logged in as {{ current_user.username }}</p>
-  <ul>
-    <li>Offerings: {{ counts.offerings }}</li>
-    <li>Testimonials: {{ counts.testimonials }}</li>
-    <li>Posts: {{ counts.posts }}</li>
-    <li>New inquiries: {{ counts.new_inquiries }}</li>
+  <ul class="dashboard-counts">
+    <li><span class="count">{{ counts.offerings }}</span><span class="label">Offerings</span></li>
+    <li><span class="count">{{ counts.testimonials }}</span><span class="label">Testimonials</span></li>
+    <li><span class="count">{{ counts.posts }}</span><span class="label">Posts</span></li>
+    <li><span class="count">{{ counts.new_inquiries }}</span><span class="label">New inquiries</span></li>
   </ul>
 {% endblock %}

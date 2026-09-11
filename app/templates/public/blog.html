@@ -1,10 +1,14 @@
 {% extends "public/base.html" %}
 {% block title %}Blog{% endblock %}
 {% block content %}
-  <h1>Blog</h1>
-  <ul>
-    {% for p in posts %}
-      <li><a href="{{ url_for('public.post_detail', slug=p.slug) }}">{{ p.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <section class="block on-paper">
+    <div class="container">
+      <h1>Blog</h1>
+      <ul class="post-list">
+        {% for p in posts %}
+          <li><a href="{{ url_for('public.post_detail', slug=p.slug) }}"><h3 style="margin:0;">{{ p.title }}</h3></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
 {% endblock %}

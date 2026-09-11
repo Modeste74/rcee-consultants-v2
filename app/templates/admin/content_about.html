@@ -1,14 +1,15 @@
 {% extends "admin/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}About Us{% endblock %}
 {% block content %}
   <h1>About Us</h1>
   <form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
-    <p>{{ form.content.label }} {{ form.content() }}</p>
+    {{ field(form.content) }}
     {% if about and about.image_url %}
       <p><img src="{{ about.image_url }}" alt="" width="150"></p>
     {% endif %}
-    <p>{{ form.image.label }} {{ form.image() }}</p>
+    {{ field(form.image) }}
     {{ form.submit() }}
   </form>
 {% endblock %}

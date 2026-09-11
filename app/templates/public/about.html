@@ -1,6 +1,17 @@
 {% extends "public/base.html" %}
 {% block title %}About Us{% endblock %}
 {% block content %}
-  <h1>About Us</h1>
-  {% if about_us %}<div>{{ about_us.content }}</div>{% endif %}
+  <section class="block on-paper">
+    <div class="container">
+      <h1>About us</h1>
+      {% if about_us %}
+        {% if about_us.image_url %}
+          <div class="detail-image" style="max-width:480px;">
+            <img src="{{ about_us.image_url }}" alt="About Us">
+          </div>
+        {% endif %}
+        <div>{{ about_us.content }}</div>
+      {% endif %}
+    </div>
+  </section>
 {% endblock %}

@@ -1,18 +1,25 @@
 {% extends "public/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}Contact Us{% endblock %}
 {% block content %}
-  <h1>Contact Us</h1>
-  <form method="POST" novalidate>
-    {{ form.hidden_tag() }}
-    <p>{{ form.name.label }} {{ form.name() }}</p>
-    <p>{{ form.email.label }} {{ form.email() }}</p>
-    <p>{{ form.phone.label }} {{ form.phone() }}</p>
-    <p>{{ form.offering_id.label }} {{ form.offering_id() }}</p>
-    <p>{{ form.message.label }} {{ form.message() }}</p>
-    <!-- honeypot field, hidden from real users -->
-    <div style="position:absolute; left:-9999px;" aria-hidden="true">
-      {{ form.website.label }} {{ form.website() }}
+  <section class="block on-paper">
+    <div class="container">
+      <div class="section-intro">
+        <h1>Get in touch</h1>
+        <p>Tell us a bit about what you're looking for, and we'll follow up.</p>
+      </div>
+      <form method="POST" novalidate style="max-width:520px;">
+        {{ form.hidden_tag() }}
+        {{ field(form.name) }}
+        {{ field(form.email) }}
+        {{ field(form.phone) }}
+        {{ field(form.offering_id) }}
+        {{ field(form.message) }}
+        <div style="position:absolute; left:-9999px;" aria-hidden="true">
+          {{ form.website.label }} {{ form.website() }}
+        </div>
+        {{ form.submit() }}
+      </form>
     </div>
-    {{ form.submit() }}
-  </form>
+  </section>
 {% endblock %}

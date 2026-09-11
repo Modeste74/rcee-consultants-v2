@@ -1,16 +1,17 @@
 {% extends "admin/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}{{ "Edit" if post else "New" }} Post{% endblock %}
 {% block content %}
   <h1>{{ "Edit" if post else "New" }} Post</h1>
   <form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
-    <p>{{ form.title.label }} {{ form.title() }}</p>
-    <p>{{ form.content.label }} {{ form.content() }}</p>
+    {{ field(form.title) }}
+    {{ field(form.content) }}
     {% if post and post.image_url %}
       <p><img src="{{ post.image_url }}" alt="" width="150"></p>
     {% endif %}
-    <p>{{ form.image.label }} {{ form.image() }}</p>
-    <p>{{ form.is_published.label }} {{ form.is_published() }}</p>
+    {{ field(form.image) }}
+    {{ field(form.is_published) }}
     {{ form.submit() }}
   </form>
 {% endblock %}

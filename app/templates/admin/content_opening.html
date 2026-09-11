@@ -1,10 +1,11 @@
 {% extends "admin/base.html" %}
+{% from "_macros.html" import field %}
 {% block title %}Opening Statement{% endblock %}
 {% block content %}
   <h1>Opening Statement</h1>
   <form method="POST">
     {{ form.hidden_tag() }}
-    <p>{{ form.content.label }} {{ form.content() }}</p>
+    {{ field(form.content) }}
     {{ form.submit() }}
   </form>
 {% endblock %}

@@ -1,0 +1,404 @@
+/* =========================================================
+   RCEE Consultants - Design tokens & base styles
+   Leadership coaching & consulting site.
+   Palette: navy (authority) + gold (growth/achievement),
+   with terracotta used only as a minor accent.
+   ========================================================= */
+
+   :root {
+  --navy: #1B3A5C;
+  --navy-deep: #12283F;
+  --gold: #D9A441;
+  --terracotta: #C1654A;
+  --paper: #FAF7F2;
+  --ink: #2B2B2B;
+  --ink-soft: #5B5B57;
+  --border-soft: #E4DDD0;
+
+  --font-display: "Zilla Slab", Georgia, serif;
+  --font-body: "Karla", -apple-system, sans-serif;
+
+  --max-width: 1120px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: 1.3rem; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+}
+
+a:hover { color: var(--terracotta); }
+
+img { max-width: 100%; display: block; border-radius: 2px; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+}
+
+/* ---------------------------------------------------------
+   Header / nav
+   --------------------------------------------------------- */
+
+.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.site-header .brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.site-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.site-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.site-nav a:hover { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); }
+
+/* ---------------------------------------------------------
+   Flash messages
+   --------------------------------------------------------- */
+
+.flashes { list-style: none; margin: 0; padding: 0; }
+.flashes li {
+  padding: 0.9rem clamp(1.25rem, 4vw, 2rem);
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+.flashes .success { background: #EEF5EC; color: #2F5B34; }
+.flashes .error { background: #FBEAE6; color: #8A3A26; }
+.flashes .info { background: #EAF1F7; color: var(--navy); }
+
+/* ---------------------------------------------------------
+   Hero (split layout - not centered)
+   --------------------------------------------------------- */
+
+.hero {
+  background: var(--navy-deep);
+  color: var(--paper);
+  padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--gap);
+  align-items: center;
+}
+
+.hero h1 { color: #fff; margin-bottom: 0.4em; }
+.hero p.lede { color: #D7DEE6; font-size: 1.15rem; max-width: 46ch; }
+
+.hero .hero-media img {
+  border-radius: 3px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 780px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .hero .hero-media { order: -1; }
+}
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+.btn:hover { background: #C8933A; color: var(--navy-deep); }
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
+  text-decoration: none;
+  border-radius: 2px;
+}
+.btn-outline:hover { border-color: #fff; }
+
+/* ---------------------------------------------------------
+   Sections
+   --------------------------------------------------------- */
+
+section.block { padding: clamp(3rem, 6vw, 4.5rem) 0; }
+section.block.on-paper { background: var(--paper); }
+
+section.block.on-navy {
+  background: var(--navy);
+  color: #EDEDE7;
+}
+section.block.on-navy h2 { color: #fff; }
+
+.section-intro { max-width: 60ch; margin-bottom: 2.5rem; }
+.section-intro p { color: var(--ink-soft); font-size: 1.05rem; }
+section.block.on-navy .section-intro p { color: #C9D2DB; }
+
+/* ---------------------------------------------------------
+   Offerings grid (asymmetric, not identical shadow cards)
+   --------------------------------------------------------- */
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+}
+
+.offering-card {
+  border-top: 3px solid var(--gold);
+  padding-top: 1.2rem;
+}
+
+.offering-card .offering-type {
+  font-size: 0.85rem;
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.offering-card h3 { margin-top: 0.3rem; }
+.offering-card h3 a { color: var(--navy); text-decoration: none; }
+.offering-card h3 a:hover { color: var(--terracotta); }
+
+/* ---------------------------------------------------------
+   Testimonials (on navy band)
+   --------------------------------------------------------- */
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap);
+}
+
+blockquote.testimonial {
+  margin: 0;
+  padding-left: 1.2rem;
+  border-left: 3px solid var(--gold);
+}
+blockquote.testimonial p { font-family: var(--font-display); font-size: 1.15rem; color: #fff; }
+blockquote.testimonial cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   Offering / post detail pages
+   --------------------------------------------------------- */
+
+.detail-header { padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem; }
+.detail-header .offering-type {
+  color: var(--terracotta);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.detail-image { margin: 1.5rem 0 2rem; }
+.detail-image img { width: 100%; border-radius: 3px; }
+
+/* ---------------------------------------------------------
+   Blog list
+   --------------------------------------------------------- */
+
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-list li {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.post-list li:first-child { padding-top: 0; }
+.post-list a { text-decoration: none; color: var(--navy); }
+.post-list a:hover { color: var(--terracotta); }
+
+/* ---------------------------------------------------------
+   Forms (public + admin share these)
+   --------------------------------------------------------- */
+
+form p { margin-bottom: 1.1rem; }
+
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: var(--navy);
+}
+
+input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], textarea, select {
+  width: 100%;
+  max-width: 480px;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: #fff;
+  color: var(--ink);
+}
+
+textarea { min-height: 140px; resize: vertical; }
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+  border-color: var(--gold);
+}
+
+.form-errors {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  color: var(--terracotta);
+  font-size: 0.85rem;
+}
+
+button[type="submit"], input[type="submit"] {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+button[type="submit"]:hover, input[type="submit"]:hover { background: var(--navy-deep); }
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.site-footer {
+  background: var(--navy-deep);
+  color: #B9C3CC;
+  padding: 2.5rem 0;
+  margin-top: 3rem;
+}
+.site-footer .container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-footer a { color: #EDEDE7; text-decoration-color: var(--gold); }
+.site-footer a:hover { color: var(--gold); }
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--gold);
+  color: var(--navy-deep) !important;
+  text-decoration: none !important;
+  padding: 0.55rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   Admin panel - functional, same tokens, less ornament
+   --------------------------------------------------------- */
+
+.admin-header {
+  background: var(--navy-deep);
+}
+.admin-header .container { padding-top: 1rem; padding-bottom: 1rem; }
+.admin-header .site-nav a { color: #D7DEE6; }
+.admin-header .site-nav a:hover { color: var(--gold); }
+.admin-header .brand { color: #fff; }
+
+.admin-main { padding: clamp(1.5rem, 4vw, 2.5rem) 0 4rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+}
+th, td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.95rem;
+}
+th { color: var(--navy); font-family: var(--font-display); font-weight: 600; }
+
+.dashboard-counts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.dashboard-counts li {
+  background: #fff;
+  border-top: 3px solid var(--gold);
+  padding: 1.2rem;
+}
+.dashboard-counts .count { display: block; font-family: var(--font-display); font-size: 2rem; color: var(--navy); }
+.dashboard-counts .label { font-size: 0.85rem; color: var(--ink-soft); }

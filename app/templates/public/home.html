@@ -1,27 +1,63 @@
 {% extends "public/base.html" %}
-{% block title %}RCEE Consultants - Home{% endblock %}
+{% block title %}RCEE Consultants - Leadership Coaching{% endblock %}
 {% block content %}
   {% if hero %}
     <section class="hero">
-      <h1>{{ hero.heading }}</h1>
-      <p>{{ hero.subheading }}</p>
+      <div class="container">
+        <div class="hero-copy">
+          <h1>{{ hero.heading }}</h1>
+          {% if hero.subheading %}<p class="lede">{{ hero.subheading }}</p>{% endif %}
+          <a class="btn" href="{{ url_for('public.contact') }}">Start the conversation</a>
+        </div>
+        {% if hero.image_url %}
+          <div class="hero-media">
+            <img src="{{ hero.image_url }}" alt="{{ hero.heading }}">
+          </div>
+        {% endif %}
+      </div>
     </section>
   {% endif %}
   {% if opening_statement %}
-    <section>{{ opening_statement.content }}</section>
+    <section class="block on-paper">
+      <div class="container">
+        <div class="section-intro">
+          <p>{{ opening_statement.content }}</p>
+        </div>
+      </div>
+    </section>
   {% endif %}
-  <section>
-    <h2>What We Offer</h2>
-    <ul>
-      {% for o in offerings %}
-        <li><a href="{{ url_for('public.offering_detail', slug=o.slug) }}">{{ o.name }}</a></li>
-      {% endfor %}
-    </ul>
+  <section class="block on-paper">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Programs &amp; services</h2>
+        <p>Coaching and training for individuals, businesses, and the young leaders in your school or church.</p>
+      </div>
+      <div class="offerings-grid">
+        {% for o in offerings %}
+          <div class="offering-card">
+            <span class="offering-type">{{ o.type.value | capitalize }}</span>
+            <h3><a href="{{ url_for('public.offering_detail', slug=o.slug) }}">{{ o.name }}</a></h3>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </section>
-  <section>
-    <h2>What People Say</h2>
-    {% for t in testimonials %}
-      <blockquote>{{ t.quote }} — {{ t.author_name }}</blockquote>
-    {% endfor %}
-  </section>
+
+  {% if testimonials %}
+    <section class="block on-navy">
+      <div class="container">
+        <div class="section-intro">
+          <h2>What people say</h2>
+        </div>
+        <div class="testimonial-grid">
+          {% for t in testimonials %}
+            <blockquote class="testimonial">
+              <p>&ldquo;{{ t.quote }}&rdquo;</p>
+              {{ t.author_name }}
+            </blockquote>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
 {% endblock %}
