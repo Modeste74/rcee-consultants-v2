@@ -3,6 +3,7 @@ venv/
 env/
 *_vir_env/
 .venv/
+rcee_cons_venv/
 
 # Python cache
 __pycache__/
