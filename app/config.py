@@ -57,8 +57,14 @@ class ProductionConfig(Config):
         if missing:
             raise RuntimeError(f"Missing required env vars: {', '.join(missing)}")
 
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    WTF_CSRF_ENABLED = False
+    SECRET_KEY = "test-secret-key"
 
 config_by_name = {
     "development": DevelopmentConfig,
+    "testing": TestingConfig,
     "production": ProductionConfig,
 }
