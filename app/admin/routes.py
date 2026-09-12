@@ -115,7 +115,7 @@ def offering_new():
 @admin_bp.route("/offerings/<offering_id>/edit", methods=["GET", "POST"])
 @login_required
 def offering_edit(offering_id):
-    offering = Offering.query.get_or_404(offering_id)
+    offering = db.get_or_404(Offering, offering_id)
     form = OfferingForm(obj=offering)
     if request.method == "GET":
         form.type.data = offering.type.value
@@ -137,7 +137,7 @@ def offering_edit(offering_id):
 @admin_bp.route("/offerings/<offering_id>/delete", methods=["POST"])
 @login_required
 def offering_delete(offering_id):
-    offering = Offering.query.get_or_404(offering_id)
+    offering = db.get_or_404(Offering, offering_id)
     db.session.delete(offering)
     db.session.commit()
     flash("Offering deleted.", "success")
@@ -181,7 +181,7 @@ def testimonial_new():
 @admin_bp.route("/testimonials/<testimonial_id>/edit", methods=["GET", "POST"])
 @login_required
 def testimonial_edit(testimonial_id):
-    testimonial = Testimonial.query.get_or_404(testimonial_id)
+    testimonial = db.get_or_404(Testimonial, testimonial_id)
     form = TestimonialForm(obj=testimonial)
     form.offering_id.choices = _offering_choices()
     if request.method == "GET":
@@ -200,7 +200,7 @@ def testimonial_edit(testimonial_id):
 @admin_bp.route("/testimonials/<testimonial_id>/delete", methods=["POST"])
 @login_required
 def testimonial_delete(testimonial_id):
-    testimonial = Testimonial.query.get_or_404(testimonial_id)
+    testimonial = db.get_or_404(Testimonial, testimonial_id)
     db.session.delete(testimonial)
     db.session.commit()
     flash("Testimonial deleted.", "success")
@@ -243,7 +243,7 @@ def post_new():
 @admin_bp.route("/posts/<post_id>/edit", methods=["GET", "POST"])
 @login_required
 def post_edit(post_id):
-    post = Post.query.get_or_404(post_id)
+    post = db.get_or_404(Post, post_id)
     form = PostForm(obj=post)
     if form.validate_on_submit():
         post.title = form.title.data
@@ -262,7 +262,7 @@ def post_edit(post_id):
 @admin_bp.route("/posts/<post_id>/delete", methods=["POST"])
 @login_required
 def post_delete(post_id):
-    post = Post.query.get_or_404(post_id)
+    post = db.get_or_404(Post, post_id)
     db.session.delete(post)
     db.session.commit()
     flash("Post deleted.", "success")
@@ -342,7 +342,7 @@ def inquiries_list():
 @admin_bp.route("/inquiries/<inquiry_id>/status", methods=["POST"])
 @login_required
 def inquiry_update_status(inquiry_id):
-    inquiry = Inquiry.query.get_or_404(inquiry_id)
+    inquiry = db.get_or_404(Inquiry, inquiry_id)
     new_status = request.form.get("status")
     if new_status in InquiryStatus._value2member_map_:
         inquiry.status = InquiryStatus(new_status)
