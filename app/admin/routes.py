@@ -1,3 +1,7 @@
+# Uncomment when switching to Cloudinary for production:
+# import cloudinary
+# import cloudinary.uploader
+
 import os
 
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, request
@@ -63,6 +67,24 @@ def _handle_image_upload(file_storage):
         max_dimension=current_app.config["MAX_IMAGE_DIMENSION"],
         quality=current_app.config["IMAGE_QUALITY"],
     )
+
+    # --- Cloudinary upload (production) ---
+    # Uncomment this block and comment out (or remove) the local-disk
+    # block below when deploying. Requires CLOUDINARY_* env vars set
+    # and the cloudinary imports above uncommented.
+    #
+    # cloudinary.config(
+    #     cloud_name=current_app.config["CLOUDINARY_CLOUD_NAME"],
+    #     api_key=current_app.config["CLOUDINARY_API_KEY"],
+    #     api_secret=current_app.config["CLOUDINARY_API_SECRET"],
+    # )
+    # result = cloudinary.uploader.upload(image_bytes, public_id=filename)
+    # return result["secure_url"]
+
+    # --- Local disk storage (dev only) ---
+    # Comment out or remove this block before deploying - the production
+    # filesystem is ephemeral and this will silently lose every uploaded
+    # image on the next restart/redeploy. See DEPLOYMENT.md section 0.
     upload_dir = os.path.join(current_app.root_path, "static", "uploads")
     return save_locally(image_bytes, filename, upload_dir)
 
